@@ -1,5 +1,6 @@
 #include <openssl/evp.h>
 #include <openssl/sha.h>
+#include <openssl/md5.h>
 #include <sstream>
 #include <iomanip>
 #include <string>
@@ -23,8 +24,8 @@ public:
   /// Return the MD5 (128-bit) hash from input.
   static std::string md5(const std::string &input, size_t iterations = 1) {
     std::string hash;
-    hast.resize(128/8);
-    MD5((const unsigned char *)input.c_str(), input.size(), (unsinged char *)hash.c_str());
+    hash.resize(128/8);
+    MD5((const unsigned char *)input.c_str(), input.size(), (unsigned char *)hash.c_str());
     for(size_t c = 1; c < iterations; ++c){
       MD5((const unsigned char *)hash.c_str(), hash.size(), (unsigned char *)hash.c_str());
     }
@@ -78,4 +79,4 @@ public:
       throw std::runtime_error("openssl: error calling PBKCS5_PBKDF2_HMAC_SHA1");
     return key;
   }
-}
+};
