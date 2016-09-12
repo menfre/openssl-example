@@ -63,8 +63,7 @@ public:
 
     for (size_t c = 1; c < iterations; ++c){
       SHA512((const unsigned char *)hash.c_str(), hash.size(), (unsigned char *)hash.c_str());
-    }
-    
+  }
     return hash;
   }
 
@@ -79,4 +78,4 @@ public:
       throw std::runtime_error("openssl: error calling PBKCS5_PBKDF2_HMAC_SHA1");
     return key;
   }
-};
+}
